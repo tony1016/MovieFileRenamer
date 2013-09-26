@@ -5,7 +5,7 @@ import MovieFileRenamer
 
 class MovieFileRenamerTest(unittest.TestCase):
 	def test_get_video_file_metadata(self):
-		metadata=MovieFileRenamer.getVideoMetadata("How It Feels [through Glass].mp4")
+		metadata=MovieFileRenamer.getVideoMetadata("Discover the North Island Rotorua to Auckland.3gp")
 		# print(metadata.get("width"))
 		self.assertTrue(metadata)
 
@@ -15,9 +15,9 @@ class MovieFileRenamerTest(unittest.TestCase):
 		self.assertEqual(10,result["total_results"])
 
 	def test_genarate_file_name(self):
-		fakeTmdbInfo={"original_title":"original title","title":"title","release_date":"2013-09-01"}
-		newname=MovieFileRenamer.generateFileName("How It Feels [through Glass].mp4", fakeTmdbInfo)
-		self.assertEqual("original.title.title.2013.720p.avc1.mp4",newname)
+		fakeTmdbInfo={"original_title":"Discover the North Island Rotorua to Auckland","title":"title","release_date":"2013-09-01"}
+		newname=MovieFileRenamer.generateFileName("Discover the North Island Rotorua to Auckland.3gp", fakeTmdbInfo)
+		self.assertEqual("Discover.the.North.Island.Rotorua.to.Auckland.title.2013.144p.mp4v.3gp",newname)
 
 if __name__ == '__main__':
 	unittest.main()
