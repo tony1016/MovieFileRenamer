@@ -15,9 +15,9 @@ class MovieFileRenamerTest(unittest.TestCase):
 		self.assertEqual(10,result["total_results"])
 
 	def test_genarate_file_name(self):
-		fakeTmdbInfo={"original_title":"Discover the North Island Rotorua to Auckland","title":"title","release_date":"2013-09-01"}
+		fakeTmdbInfo={"id":550,"original_title":"Discover the North Island Rotorua to Auckland","title":"title","release_date":"2013-09-01"}
 		newname=MovieFileRenamer.generateFileName("Discover the North Island Rotorua to Auckland.3gp", fakeTmdbInfo)
-		self.assertEqual("Discover.the.North.Island.Rotorua.to.Auckland.title.2013.144p.mp4v.3gp",newname)
+		self.assertEqual(u"Fight.Club.搏击俱乐部.2013.144p.mp4v.3gp",newname)
 
 if __name__ == '__main__':
 	unittest.main()

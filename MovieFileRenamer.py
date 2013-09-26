@@ -19,6 +19,14 @@ def searchMovieInTmdb(searchKey):
 	jsonResult=json.loads(response)
 	return jsonResult
 
+def getName(id,language):
+	headers = {"Accept": "application/json"}
+	data={"api_key":"2d47f493560c897a2b6471bc6dc66bf7","language":language}
+	request=urllib2.Request("http://api.themoviedb.org/3/movie/"+str(id)+"?"+urllib.urlencode(data), headers=headers)
+	response=urllib2.urlopen(request).read().decode('utf-8')
+	jsonResult=json.loads(response)
+	return jsonResult["title"]
+
 def process(file):
 	selectedItem=None
 	while not selectedItem:
@@ -55,8 +63,8 @@ def generateFileName(file,tmdbInfo):
 	metadata=getVideoMetadata(file)
 	# print(metadata)
 	fileName, fileExtension = os.path.splitext(file)
-	newname=tmdbInfo["original_title"]\
-	+" "+tmdbInfo["title"]\
+	newname=getName(tmdbInfo["id"], "en")\
+	+" "+getName(tmdbInfo["id"], "zh")\
 	+" "+tmdbInfo["release_date"][0:4]\
 	+" "+str(metadata["video"][0]["height"])+"p"\
 	+" "+metadata["video"][0]["codec"]\
