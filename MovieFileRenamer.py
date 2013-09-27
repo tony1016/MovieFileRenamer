@@ -81,8 +81,11 @@ def promptConfirmation(file):
 
 
 if __name__ == '__main__':
-	dir=raw_input("Please input the dir:")
-	files=listFiles(dir+"/*")
-	for file in files:
-		if promptConfirmation(file):
-			process(file)
+	path=raw_input("Please input the dir or the file path:")
+	if os.path.isdir(path):
+		files=listFiles(path+"/*")
+		for file in files:
+			if promptConfirmation(file):
+				process(file)
+	else:
+		process(path)
